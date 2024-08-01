@@ -5,7 +5,7 @@
 #include "network.h"
 #include "mqtt.h"
 
-int get_pkt(int sock)
+int get_pkt(int sock, union mqtt_pkt *out_pkt)
 {
     union fixed_header pkt_header;
     if (recv(sock, &pkt_header, 1, 0) != 1)
@@ -55,10 +55,12 @@ int get_pkt(int sock)
     }
 
     free(pkt_buf);
+
+    out_pkt->connect = *packet;
     return 0;
 }
 
-int send_pkt(int sock)
+int send_pkt(int sock, union mqtt_pkt *in_pkt)
 {
 
 }

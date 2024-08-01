@@ -44,3 +44,21 @@ struct connect_pkt* get_connect_pkt(unsigned char *buf, union fixed_header *head
 
     return con_pkt;
 }
+
+unsigned char* pack_connect_pkt(struct connect_pkt *pkt)
+{
+    int tot_len = 0;
+    int rem_len = 0;
+
+    short protocol_name_len = 4;
+    char protocol_name[4] = {'M', 'Q', 'T', 'T'};
+    char protocol_lvl = (char)4;
+
+    rem_len = 10;
+    rem_len += 2 + strlen(pkt->payload.client_id);
+    rem_len += pkt->bits.will ? 4 + strlen(pkt->payload.will_topic) + strlen(pkt->payload.will_message) : 0;
+    rem_len += pkt->bits.username ? 2 + strlen(pkt->payload.username) : 0;
+    rem_len += pkt->bits.password ? 2 + strlen(pkt->payload.password) : 0;
+
+    //TODO finish function
+}

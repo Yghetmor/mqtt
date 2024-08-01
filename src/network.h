@@ -3,7 +3,7 @@
 
 #include "mqtt.h"
 
-int get_pkt(int sock);
-int send_pkt(int sock);
+int get_pkt(int sock, union mqtt_pkt *out_pkt);
+int send_pkt(int sock, union mqtt_pkt *in_pkt);
 
 #endif // !NETWORK_H

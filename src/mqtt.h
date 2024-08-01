@@ -133,4 +133,6 @@ union mqtt_pkt {
 
 struct connect_pkt* get_connect_pkt(unsigned char *buf, union fixed_header *header);
 
+unsigned char* pack_connect_pkt(struct connect_pkt *pkt);
+
 #endif // !MQTT_H
